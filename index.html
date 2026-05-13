@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f2f2f2;
+        }
+
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px gray;
+        }
+
+        #result {
+            width: 100%;
+            height: 50px;
+            font-size: 25px;
+            text-align: right;
+            margin-bottom: 15px;
+        }
+
+        .buttons {
+            display: flex;
+        }
+
+        .numbers {
+            display: grid;
+            grid-template-columns: repeat(3, 60px);
+            gap: 10px;
+        }
+
+        .operators {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+            gap: 10px;
+        }
+
+        button {
+            width: 60px;
+            height: 60px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .equal {
+            height: 130px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="calculator">
+
+        <input type="text" id="result" readonly>
+
+        <div class="buttons">
+
+            <!-- Number Buttons -->
+            <div class="numbers">
+
+                <button onclick="display('1')">1</button>
+                <button onclick="display('2')">2</button>
+                <button onclick="display('3')">3</button>
+
+                <button onclick="display('4')">4</button>
+                <button onclick="display('5')">5</button>
+                <button onclick="display('6')">6</button>
+
+                <button onclick="display('7')">7</button>
+                <button onclick="display('8')">8</button>
+                <button onclick="display('9')">9</button>
+
+                <button onclick="display('.')">.</button>
+                <button onclick="display('0')">0</button>
+                <button onclick="deleteLast()">⌫</button>
+
+                <button onclick="clearScreen()">C</button>
+
+            </div>
+
+            <!-- Operator Buttons -->
+            <div class="operators">
+
+                <button onclick="display('+')">+</button>
+                <button onclick="display('-')">-</button>
+                <button onclick="display('*')">*</button>
+                <button onclick="display('/')">/</button>
+
+                <button class="equal" onclick="calculate()">=</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function display(value) {
+            document.getElementById("result").value += value;
+        }
+
+        function clearScreen() {
+            document.getElementById("result").value = "";
+        }
+
+        function deleteLast() {
+            let current = document.getElementById("result").value;
+            document.getElementById("result").value = current.slice(0, -1);
+        }
+
+        function calculate() {
+            let expression = document.getElementById("result").value;
+            document.getElementById("result").value = eval(expression);
+        }
+
+    </script>
+
+</body>
+
+</html>
